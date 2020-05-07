@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -3065042404554221510
     second: evo2_2
+  - first:
+      213: -8209645859366923777
+    second: evo2_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -115,7 +118,7 @@ TextureImporter:
         width: 2505
         height: 2726
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -136,7 +139,7 @@ TextureImporter:
         width: 2861
         height: 3151
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,7 +160,7 @@ TextureImporter:
         width: 2245
         height: 3584
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,6 +168,27 @@ TextureImporter:
       bones: []
       spriteID: 677e0cf44c9a2184fa82ad0836c3e2dc
       internalID: -3065042404554221510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: evo2_3
+      rect:
+        serializedVersion: 2
+        x: 3029
+        y: 2364
+        width: 653
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bb7e0d665c9b1a4984a703aba3a8223
+      internalID: -8209645859366923777
       vertices: []
       indices: 
       edges: []
