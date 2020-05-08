@@ -8,8 +8,8 @@ public class Moving : MonoBehaviour
     public float Speed;
     public float JumpForce;
     Rigidbody2D rb;
-    int where;
     float Yangle;
+    public VariableJoystick dj;
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -30,17 +30,18 @@ public class Moving : MonoBehaviour
             CanJump = false;
         }
     }
-    public void Update()
+    private void Update()
     {
-       transform.rotation = Quaternion.Euler(new Vector3(0, Yangle, 0));
+        var x = dj.Horizontal;
+        Vector2 move = new Vector2(x * Speed * Time.deltaTime,0);
+        rb.AddForce(move, ForceMode2D.Force);
+        if (dj.Horizontal != 0)
+        {
+            Yangle = dj.Horizontal>0 ? 0 : 180;
+        }
+        transform.rotation = Quaternion.Euler(new Vector3(0, Yangle, 0));
     }
-    public void Go(int where)
-    {
-        Yangle = 90 * (where - 1);
-        Debug.Log(Yangle);
-        rb.AddForce(Vector2.right * Speed *where);
-    }
-    
+   
     public void jump()
     {
         if(CanJump)
