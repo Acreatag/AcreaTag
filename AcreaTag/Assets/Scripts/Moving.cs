@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class Moving : MonoBehaviour
 {
-    bool CanJump;
     public float Speed;
     public float JumpForce;
-    Rigidbody2D rb;
-    float Yangle;
     public VariableJoystick dj;
+    public float AnimationPlaySpeed;
+
+    Rigidbody2D rb;
+    Animator anim;
+    float Yangle;
+    bool IsOnGround;
+
     void Start()
     {
+        AnimationPlaySpeed = 0.1f;
+        anim = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Surface"))
+        if (collision.gameObject.CompareTag("Surface"))
         {
-            CanJump = true;
+            IsOnGround = true;
         }
     }
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Surface"))
         {
-            CanJump = false;
+            IsOnGround = false;
         }
     }
     private void Update()
@@ -37,14 +41,20 @@ public class Moving : MonoBehaviour
         rb.AddForce(move, ForceMode2D.Force);
         if (dj.Horizontal != 0)
         {
-            Yangle = dj.Horizontal>0 ? 0 : 180;
+            var newAngle = dj.Horizontal > 0 ? 0 : 180;
+            if (Yangle != newAngle)
+            {
+                Yangle = newAngle;
+                rb.velocity = new Vector2(0,rb.velocity.y);
+            }
         }
+        var animspeed = Mathf.Abs(rb.velocity.x) * AnimationPlaySpeed;
+        anim.speed = IsOnGround ? animspeed : 0;
         transform.rotation = Quaternion.Euler(new Vector3(0, Yangle, 0));
     }
-   
     public void jump()
     {
-        if(CanJump)
+        if(IsOnGround)
         rb.AddForce(Vector2.up * JumpForce);
     }
 
